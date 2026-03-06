@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>конструктор · undertale style</title>
-    <!-- Font Awesome 6 -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         @font-face {
@@ -31,7 +31,7 @@
             line-height: 1.5; color: #ffffff;
             letter-spacing: 0.5px;
         }
-        /* ПАНЕЛЬ УПРАВЛЕНИЯ */
+        
         .editor-panel {
             width: 380px;
             background: #000000;
@@ -103,7 +103,7 @@
             margin-bottom: 10px;
             border: 1px solid #333;
         }
-        /* ОСНОВНАЯ КАРТОЧКА */
+        
         .card {
             width: 100%;
             max-width: 900px;
@@ -245,7 +245,7 @@
             .avatar-popup::before { left: 30px; top: -10px; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #ffffff; border-top: none; }
             .pronouns-popup { top: 190px; min-width: 280px; }
         }
-        /* Блок с финальным кодом */
+        
         .final-code-block {
             margin-top: 40px;
             background: #111;
@@ -267,18 +267,18 @@
     </style>
 </head>
 <body>
-    <!-- ФОН -->
+    
     <div class="video-background"><video autoplay muted loop playsinline id="bg-video"><source src="https://file.garden/ZQR3X6zuxT0Yoseo/Deltarune%20Character%20Creation%20Background%20(%2B%20Download).mp4" type="video/mp4"></video></div>
 
-    <!-- АУДИО -->
+    
     <audio id="hoverSound" preload="auto"><source src="https://file.garden/ZQR3X6zuxT0Yoseo/snd_menumove.wav" type="audio/wav"></audio>
     <audio id="clickSound" preload="auto"><source src="https://file.garden/ZQR3X6zuxT0Yoseo/snd_select.wav" type="audio/wav"></audio>
 
-    <!-- ПАНЕЛЬ КОНСТРУКТОРА -->
+    
     <div class="editor-panel">
         <h2><i class="fas fa-edit"></i> constructor</h2>
 
-        <!-- ПРОФИЛЬ -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-user"></i> Profile</h3>
             <div class="editor-row"><label>Avatar URL</label><input type="text" id="avatarUrlInput" value="https://file.garden/ZQR3X6zuxT0Yoseo/4a1ff406e7a636f84e5687e31eb2b18c131a1199.png"></div>
@@ -286,7 +286,7 @@
             <div class="editor-row"><label>Description</label><input type="text" id="descInput" value="en\ru 15y.o. minor"></div>
         </div>
 
-        <!-- АВАТАР ПОПАП -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-image"></i> Avatar popup</h3>
             <div class="editor-row"><label>Text</label><textarea id="avatarPopupTextInput">character on pfp - Kris Dreemur</textarea></div>
@@ -294,7 +294,7 @@
             <div class="editor-row"><label>Credit</label><input type="text" id="avatarPopupCreditInput" value="credit: @coff1n1997 on tumblr"></div>
         </div>
 
-        <!-- МЕСТОИМЕНИЯ -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-genderless"></i> Pronouns</h3>
             <div class="editor-row">
@@ -318,32 +318,32 @@ $he said $he would rather do it $himself.</textarea>
             </div>
         </div>
 
-        <!-- СОЦСЕТИ (6) -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-link"></i> Socials (6)</h3>
             <div id="socialEditorsContainer"></div>
         </div>
 
-        <!-- ФАНДОМЫ (7) -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-heart"></i> Fandoms (7)</h3>
             <div id="fandomEditorsContainer"></div>
         </div>
 
-        <!-- ПОДПИСЬ -->
+        
         <div class="editor-group">
             <h3><i class="fas fa-signature"></i> Footer</h3>
             <input type="text" id="footerInput" value="with luv · zetevs">
         </div>
 
-        <!-- ФИНАЛЬНЫЙ КОД -->
+        
         <div class="final-code-block">
             <h3 style="margin-top:0;"><i class="fas fa-code"></i> 📋 FINAL HTML (copy this)</h3>
             <textarea id="finalCodeOutput" readonly></textarea>
         </div>
     </div>
 
-    <!-- КАРТОЧКА-ПРЕВЬЮ -->
+    
     <div class="card" id="mainCard">
         <div class="profile-top">
             <div class="profile-header">
@@ -385,7 +385,7 @@ $he said $he would rather do it $himself.</textarea>
 
     <script>
         (function() {
-            // ЗВУКИ
+            
             const hoverSound = document.getElementById('hoverSound');
             const clickSound = document.getElementById('clickSound');
             if (hoverSound) hoverSound.volume = 0.3;
@@ -393,7 +393,7 @@ $he said $he would rather do it $himself.</textarea>
             window.playHover = () => hoverSound?.play();
             window.playClick = () => clickSound?.play();
 
-            // ДАННЫЕ ПО УМОЛЧАНИЮ
+            
             const defaultSocials = [
                 { icon: 'fab fa-soundcloud', name: 'soundcloud', url: 'https://on.soundcloud.com/AyqsK0tKAYos0CBqNS', customIcon: '' },
                 { icon: 'fab fa-telegram', name: 'telegram', url: 'https://t.me/zettevs', customIcon: '' },
@@ -415,7 +415,7 @@ $he said $he would rather do it $himself.</textarea>
             let socials = JSON.parse(localStorage.getItem('socials')) || defaultSocials;
             let fandoms = JSON.parse(localStorage.getItem('fandoms')) || defaultFandoms;
 
-            // ЭЛЕМЕНТЫ
+            
             const avatarPreview = document.getElementById('avatarPreview');
             const avatarUrlInput = document.getElementById('avatarUrlInput');
             const nicknameInput = document.getElementById('nicknameInput');
@@ -552,7 +552,7 @@ $he said $he would rather do it $himself.</textarea>
                 renderFandoms(); updateFinalCode();
             }
 
-            // Сохранение простых полей
+            
             function saveToStorage() {
                 let data = {
                     avatarUrl: avatarUrlInput.value, nickname: nicknameInput.value, desc: descInput.value,
@@ -582,7 +582,7 @@ $he said $he would rather do it $himself.</textarea>
                 let f = localStorage.getItem('fandoms'); if (f) fandoms = JSON.parse(f);
             }
 
-            function generateFinalHTML() { /* ... тут генерация ... */
+            function generateFinalHTML() {
                 const avatarUrl = avatarUrlInput.value;
                 const nickname = nicknameInput.value;
                 const desc = descInput.value;
@@ -732,4 +732,5 @@ window.onclick=function(e){
     </script>
 </body>
 </html>
+
 
